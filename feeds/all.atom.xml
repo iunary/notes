@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yusuf.im</title><link href="http://www.yusuf.im/" rel="alternate"></link><link href="http://www.yusuf.im/feeds/all.atom.xml" rel="self"></link><id>http://www.yusuf.im/</id><updated>2015-05-30T02:21:00+01:00</updated><entry><title>Wagtail cms</title><link href="http://www.yusuf.im/posts/2015/May/30/wagtail-cms/" rel="alternate"></link><updated>2015-05-30T02:21:00+01:00</updated><author><name>Yusuf</name></author><id>tag:www.yusuf.im,2015-05-30:posts/2015/May/30/wagtail-cms/</id><summary type="html">&lt;p&gt;&lt;img alt="wagtail" src="http://www.yusuf.im/images/wagtail.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;intro&lt;/h2&gt;
+&lt;p&gt;Wagtail, a new Django based &lt;span class="caps"&gt;CMS&lt;/span&gt; built by &lt;a href="http://torchbox.com/"&gt;Torchbox&lt;/a&gt;, has been getting lot of attention recently. Originally it was a private project for the &lt;a href="http://www.rca.ac.uk/"&gt;Royal college of art&lt;/a&gt; and open sourced later as Tom Dyson the co-founder of Torchbox mentioned &lt;a href="https://news.ycombinator.com/item?id=7231504"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are many Django based content management systems like Django cms, Mezzanine, FeinCMS and so on. So why a new Django&amp;nbsp;cms?&lt;/p&gt;
+&lt;p&gt;Wagtail comes with lot of features and functionalities that makes it so flexible and easy to extend and customize. It&amp;#8217;s shipped with many options which offering the flexibility for developers and an elegant and ergonomic user interface for content&amp;nbsp;authors/editors.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="wagail admin" src="http://www.yusuf.im/images/wagtail-admin.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I can mention some highlighted features&amp;nbsp;like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pretty interface and&amp;nbsp;user-friendly&lt;/li&gt;
+&lt;li&gt;Good user&amp;nbsp;experience&lt;/li&gt;
+&lt;li&gt;flexibility&lt;/li&gt;
+&lt;li&gt;Easy to find and edit specific&amp;nbsp;content&lt;/li&gt;
+&lt;li&gt;ElasticSearch for&amp;nbsp;searching&lt;/li&gt;
+&lt;li&gt;Good document&amp;nbsp;management&lt;/li&gt;
+&lt;li&gt;Save drafts and submit for&amp;nbsp;moderation&lt;/li&gt;
+&lt;li&gt;Easy to use and to set&amp;nbsp;up&lt;/li&gt;
+&lt;li&gt;Comes with a demo App including good&amp;nbsp;examples&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And many more, just to let you the pleasure of discovering them by&amp;nbsp;yourself.&lt;/p&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Wagtail can work on most Django supported database management systems, but PostgreSQL is the most recommended for&amp;nbsp;production.&lt;/p&gt;
+&lt;p&gt;Wagtail has strong support for Elasticsearch, both in the admin interface and for users of the website, and is faster and more powerful than the Django &lt;span class="caps"&gt;ORM&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;There are many ways to setup Wagtail and our development environment to start using it, we are going to mention three of&amp;nbsp;them.&lt;/p&gt;
+&lt;h3&gt;Wagtail and&amp;nbsp;Vagrant&lt;/h3&gt;
+&lt;p&gt;Wagtail offers a Vagrant box that includes all the dependencies for a fully-fledged Wagtail environment and includes a set of standard templates and page types as a demo of a Wagtial based&amp;nbsp;website.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="caps"&gt;PS&lt;/span&gt;: Im using Vagrant version&amp;nbsp;1.7.2&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/torchbox/wagtaildemo.git
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;wagtaildemo
+&lt;span class="nv"&gt;$ &lt;/span&gt;vagrant -v
+Vagrant 1.7.2
+&lt;span class="nv"&gt;$ &lt;/span&gt;vagrant up
+&lt;span class="nv"&gt;$ &lt;/span&gt;vagrant ssh
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="c"&gt;#Create a new super user to access wagtail admin&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py createsuperuser
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="c"&gt;#To update Elasticsearch&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py update_index
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="c"&gt;#Let&amp;#39;s run wagtail demo now&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py runserver 0.0.0.0:8000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will make the app accessible on the host machine as &lt;a href="http://127.0.0.1:8000"&gt;http://127.0.0.1:8000&lt;/a&gt; - you can access the Wagtail admin interface at &lt;a href="http://127.0.0.1:8000/admin/"&gt;http://127.0.0.1:8000/admin/&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Wagtail, Yoman and&amp;nbsp;Vagrant&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://yeoman.io/"&gt;Yeoman&lt;/a&gt; offers &lt;a href="https://www.npmjs.com/package/generator-wagtail"&gt;generate-wagtail&lt;/a&gt; a tool for a quick start wagtail projects, the generator makes it so easy to get you up and running with a fresh copy of&amp;nbsp;Wagtail.&lt;/p&gt;
+&lt;p&gt;By running a simple command line you can get a new wagtail project shipped with a vagrantfile to run their official box with all dependencies installed and ready to&amp;nbsp;work.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yo wagtail
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It will ask you to name your project, so name it whatever you like and press enter. You just created a new clean wagtail project. Now, you need to follow the same steps as we mentioned on the above with vagrant to provision your local vagrant box. For this time to access the wagtail project you must use &lt;a href="http://127.0.0.1:8111"&gt;http://127.0.0.1:8111&lt;/a&gt; or just open the vagrantfile and change the port 8111 to whatever you&amp;nbsp;like.&lt;/p&gt;
+&lt;h3&gt;Wagtail, pip and&amp;nbsp;Virtualenv&lt;/h3&gt;
+&lt;p&gt;We are going to create a python virtual environment and then install wagtail using&amp;nbsp;pip.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkvirtualenv blogenv
+&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install wagtail
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By installing wagtail a new command line will be available for use to create new wagtail&amp;nbsp;projects.&lt;/p&gt;
+&lt;p&gt;To create a new wagtail project all we need is to type the following&amp;nbsp;command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wagtail start blog
+&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py migrate
+&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py createsuperuser
+&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py runserver
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Congratulation, you have prepared your development environment and wagtail. All you need now it to give it a try and start discovering wagtail options and&amp;nbsp;features.&lt;/p&gt;
+&lt;p&gt;I didn&amp;#8217;t mention how to setup it using Docker. So, you can check out &lt;a href="https://registry.hub.docker.com/search?q=wagtail"&gt;https://registry.hub.docker.com/search?q=wagtail&lt;/a&gt; and give it a try&amp;nbsp;yourself.&lt;/p&gt;
+&lt;p&gt;We come to the end of this story and we are going to create a blog using wagtail in the next&amp;nbsp;story.&lt;/p&gt;</summary><category term="wagtail"></category><category term="django"></category><category term="cms"></category></entry><entry><title>Process monitoring with supervisor</title><link href="http://www.yusuf.im/posts/2015/Apr/20/process%20monitoring%20with%20supervisor/" rel="alternate"></link><updated>2015-04-20T01:43:00+01:00</updated><author><name>Yusuf</name></author><id>tag:www.yusuf.im,2015-04-20:posts/2015/Apr/20/process monitoring with supervisor/</id><summary type="html">&lt;p&gt;For some reasons you will find yourself writing some magical lines of code or having a small/large application that needs to run all the time and shouldn&amp;#8217;t&amp;nbsp;fail.&lt;/p&gt;
+&lt;p&gt;To accomplish this, we need something to keep an eye on that magic or application and ensure to keep it up and running all the time, here comes the usefulness of&amp;nbsp;supervisor.&lt;/p&gt;
+&lt;p&gt;This story assumes that you are familiar with the command line and Sysadmin&amp;nbsp;basics.&lt;/p&gt;
+&lt;h2&gt;Intro&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Supervisor&lt;/strong&gt; is a simple and popular python application for process controlling and monitoring. on the other hand it&amp;#8217;s a program that runs and watch other programs to ensure they are executed all the&amp;nbsp;time.&lt;/p&gt;
+&lt;p&gt;On the next lines, we are going to demonstrate how to use it effectively to maintain your applications for a better&amp;nbsp;deployments.&lt;/p&gt;
+&lt;h2&gt;Installation and&amp;nbsp;configuration&lt;/h2&gt;
+&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;p&gt;To install Supervisor on Ubuntu or Debian, we can simply run the following as a super&amp;nbsp;user:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;apt-get install supervisor -y
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once it has completed, the supervisor daemon should be already running. To make sure it is, run the following&amp;nbsp;command.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service supervisor status
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The command will return &amp;#8216;is running&amp;#8217;, in case it&amp;#8217;s not. You can start it by&amp;nbsp;running.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;service supervisor start
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we have done with the installation of the supervisor and ensured of supervisord running. We can write our first configuration file for our&amp;nbsp;application.&lt;/p&gt;
+&lt;h3&gt;Configuration&lt;/h3&gt;
+&lt;p&gt;I chose celery for this demonstration. Supervisor is a configuration file driven. We are going to write a configuration file for celery to be monitored and controlled by supervisor. Before that we are going to configure our supervisord web&amp;nbsp;interface.&lt;/p&gt;
+&lt;p&gt;Configuration files for supervisor are located in /etc/supervisor folder, by adding the following lines to the supervisor configuration file supervisord.conf we are going to be able to access it through our&amp;nbsp;browser.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;inet_http_server&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=*&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;9001&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By checking the the url http://127.0.0.1:9001 we can access the web interface of our supervisor doemon and it&amp;#8217;s empty&amp;nbsp;now.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="supervisor web ui" src="http://www.yusuf.im/images/supervisor_web_ui.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Supervisor comes also with supervisorctl, a client command line that allow us to control the processes. It provides a shell like interface to the features provided by supervisord. From supervisorctl, we can connect to different supervisord processes, get status on the subprocesses controlled by, stop and start subprocesses of, and get lists of running processes of a&amp;nbsp;supervisord.&lt;/p&gt;
+&lt;p&gt;As we see on the previous screenshot we don&amp;#8217;t have any monitored process yet, so let&amp;#8217;s create a configuration file for celery&amp;nbsp;application.&lt;/p&gt;
+&lt;p&gt;We need to create a new configuration file at /etc/supervisor/conf.d/ folder and we are going to call it celery.conf, the extension .conf is so important as we see on the supervisor configuration file, it includes any file with .conf&amp;nbsp;extension.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;files&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;supervisor&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;/*.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we need to tell Supervisord how to run and monitor celery. We are going to put the following lines in our&amp;nbsp;celery.conf&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;program&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;celeryd&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;celery&lt;/span&gt; &lt;span class="n"&gt;worker&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;loglevel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;
+&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;yusuf&lt;/span&gt;
+&lt;span class="n"&gt;numprocs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;stdout_logfile&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;celery&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;worker&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
+&lt;span class="n"&gt;stderr_logfile&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;celery&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;worker&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;err&lt;/span&gt;
+&lt;span class="n"&gt;autostart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;true&lt;/span&gt;
+&lt;span class="n"&gt;autorestart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;true&lt;/span&gt;
+&lt;span class="n"&gt;startsecs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;span class="n"&gt;stopwaitsecs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;600&lt;/span&gt;
+&lt;span class="n"&gt;killasgroup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;true&lt;/span&gt;
+&lt;span class="n"&gt;priority&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;998&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now let&amp;#8217;s check the web interface again, we see that our monitored application appeared on the&amp;nbsp;list.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="supervisor running celery" src="supervisor_celeryd.png" /&gt;&lt;/p&gt;
+&lt;p&gt;We can use the client command line by&amp;nbsp;running&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; supervisorctrl status
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In case there are no errors on our config file it will return something like that, telling us that our application is running and monitored by&amp;nbsp;supervisor.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;celeryd                          RUNNING    pid 27, uptime 0:05:07
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;##Supervisor and&amp;nbsp;Virtualenv&lt;/p&gt;
+&lt;p&gt;On the previous celery configuration, we installed celery globally on our system. For many reasons python developers prefer to use virtualenv for both development and production mode, so we are going to modify our previous configuration, in case celery is installed on a python virtual&amp;nbsp;environment.  &lt;/p&gt;
+&lt;p&gt;Our celery.conf will looks like&amp;nbsp;that.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[program:celeryd]&lt;/span&gt;
+&lt;span class="na"&gt;environment&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;PYTHONPATH=&amp;#39;/path/to/your/env&amp;#39;&lt;/span&gt;
+&lt;span class="na"&gt;command&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/path/to/your/env/bin/celery worker --loglevel=INFO&lt;/span&gt;
+&lt;span class="na"&gt;command&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/usr/bin/celery worker -B --loglevel=INFO&lt;/span&gt;
+&lt;span class="na"&gt;user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;yusuf&lt;/span&gt;
+&lt;span class="na"&gt;numprocs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;1&lt;/span&gt;
+&lt;span class="na"&gt;stdout_logfile&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/var/log/celery/worker.log&lt;/span&gt;
+&lt;span class="na"&gt;stderr_logfile&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/var/log/celery/worker.err&lt;/span&gt;
+&lt;span class="na"&gt;autostart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;autorestart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;startsecs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;10&lt;/span&gt;
+&lt;span class="na"&gt;stopwaitsecs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;600&lt;/span&gt;
+&lt;span class="na"&gt;killasgroup&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;
+&lt;span class="na"&gt;priority&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;998&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;span class="caps"&gt;PYTHONPATH&lt;/span&gt; section is setting up the python path to the virtualenv. So when supervisor goes to execute the command it will be executing it within the&amp;nbsp;virtualenv.&lt;/p&gt;
+&lt;h2&gt;Supervisor and&amp;nbsp;Superlance&lt;/h2&gt;
+&lt;p&gt;Superlance is a python package of plugin utilities for monitoring and controlling processes that run under supervisor by listening to supervisord&amp;nbsp;events.&lt;/p&gt;
+&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;p&gt;It can be installed easily by typing the following&amp;nbsp;command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install superlance
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Superlance comes with five even&amp;nbsp;listeners:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;httpok
+    &amp;gt; This plugin is meant to be used as a supervisor event listener, subscribed to TICK_* events. It tests that a given child process which must in the &lt;span class="caps"&gt;RUNNING&lt;/span&gt; state, is viable via an &lt;span class="caps"&gt;HTTP&lt;/span&gt; &lt;span class="caps"&gt;GET&lt;/span&gt; request to a configured &lt;span class="caps"&gt;URL&lt;/span&gt;. If the request fails or times out, httpok will restart the “hung” child&amp;nbsp;process.&lt;/li&gt;
+&lt;li&gt;crashmail
+    &amp;gt; This plugin is meant to be used as a supervisor event listener, subscribed to PROCESS_STATE_EXITED events. It email a user when a process enters the &lt;span class="caps"&gt;EXITED&lt;/span&gt; state&amp;nbsp;unexpectedly.&lt;/li&gt;
+&lt;li&gt;memmon
+    &amp;gt; This plugin is meant to be used as a supervisor event listener, subscribed to TICK_* events. It monitors memory usage for configured child processes, and restarts them when they exceed a configured maximum&amp;nbsp;size.&lt;/li&gt;
+&lt;li&gt;crashmailbatch
+    &amp;gt; Similar to crashmail, crashmailbatch sends email alerts when processes die unexpectedly. The difference is that all alerts generated within the configured time interval are batched together to avoid sending too many&amp;nbsp;emails.&lt;/li&gt;
+&lt;li&gt;fatalmailbatch
+    &amp;gt; This plugin sends email alerts when processes fail to start too many times such that supervisord gives up retrying. All of the fatal start events generated within the configured time interval are batched together to avoid sending too many&amp;nbsp;emails.&lt;/li&gt;
+&lt;li&gt;crashsms
+    &amp;gt; Similar to crashmailbatch except it sends &lt;span class="caps"&gt;SMS&lt;/span&gt; alerts through an email gateway. Messages are formatted to fit in &lt;span class="caps"&gt;SMS&lt;/span&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this story we are going to talk only about crashmail and configure it for our&amp;nbsp;needs.&lt;/p&gt;
+&lt;p&gt;We are going to edit supervisord.conf file by adding the following lines to the configuration&amp;nbsp;file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;eventlistener&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;crashmail&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;crashmail&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="nd"&gt;@example.com&lt;/span&gt;
+&lt;span class="n"&gt;events&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PROCESS_STATE_EXITED&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you want to get notified only for a specific application, for example celeryd in our&amp;nbsp;case:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[eventlistener:crashmail]&lt;/span&gt;
+&lt;span class="na"&gt;command&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;crashmail -p celeryd -m dev@example.com&lt;/span&gt;
+&lt;span class="na"&gt;events&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;PROCESS_STATE_EXITED&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For more information about superlancer i recommend you to check their documentation at&amp;nbsp;http://superlance.readthedocs.org/en/latest/&lt;/p&gt;</summary><category term="supervisor"></category><category term="superlance"></category><category term="celery"></category><category term="virtualenv"></category></entry><entry><title>Django views automated testing with selenium</title><link href="http://www.yusuf.im/posts/2015/Mar/04/django-views-automated-testing-with-selenium/" rel="alternate"></link><updated>2015-03-04T08:02:00+00:00</updated><author><name>Yusuf</name></author><id>tag:www.yusuf.im,2015-03-04:posts/2015/Mar/04/django-views-automated-testing-with-selenium/</id><summary type="html">&lt;p&gt;In this story we gonna learn how to automate your testing against django views using&amp;nbsp;selenium.&lt;/p&gt;
+&lt;h3&gt;Selenium&lt;/h3&gt;
+&lt;p&gt;Selenium is set of tools for automating browsers. It provides a lot of options and APIs for automating user interaction with the web applications. It is used for testing web applications, web scraping and automating boring repetitive&amp;nbsp;tasks.&lt;/p&gt;
+&lt;p&gt;Selenium supports automation on all the major browsers including Firefox, Internet Explorer,Google Chrome, Safari, and Opera. Selenium can be also ran on android&amp;nbsp;devices.&lt;/p&gt;
+&lt;p&gt;In our story we gonna use selenium WebDriver with Firefox for automating a django views test same as we were doing it&amp;nbsp;manually.&lt;/p&gt;
+&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;p&gt;Selenium WebDriver is available for various programming languages. on our case we gonna use python. To install the selenium package in a simple way, we gonna use&amp;nbsp;pip.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;  &lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install selenium
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now our package is installed. Then, we gonna demonstrate how to write a functional test for a django&amp;nbsp;project.&lt;/p&gt;
+&lt;h3&gt;Demo&lt;/h3&gt;
+&lt;p&gt;Our environment is ready now for writing our&amp;nbsp;tests.&lt;/p&gt;
+&lt;p&gt;For a quick demo i gonna write an automated test for a the account app to create a new user&amp;nbsp;account.&lt;/p&gt;
+&lt;p&gt;We will inherit LiveServerTestCase class that gonna run automatically a test server in the background. Then, our selenium tests will be ran against that server. We can run our test simply by using the following command by replacing appname with your django app&amp;nbsp;name.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py &lt;span class="nb"&gt;test &lt;/span&gt;appname
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In each django app there is a tests.py file dedicated to write and run our test. Im using the follow snippet in my tests&amp;nbsp;file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.test&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LiveServerTestCase&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.webdriver.common.keys&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Keys&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;AccountTestCase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;LiveServerTestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setUp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;selenium&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Firefox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AccountTestCase&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setUp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tearDown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AccountTestCase&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tearDown&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_register&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;selenium&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;selenium&lt;/span&gt;
+        &lt;span class="c"&gt;#Opening the link we want to test&lt;/span&gt;
+        &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://127.0.0.1:8000/accounts/register/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;#find the form element&lt;/span&gt;
+        &lt;span class="n"&gt;first_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id_first_name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;last_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id_last_name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;username&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id_username&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;email&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id_email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;password1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id_password1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;password2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id_password2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="n"&gt;submit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;register&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="c"&gt;#Fill the form with data&lt;/span&gt;
+        &lt;span class="n"&gt;first_name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send_keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Yusuf&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;last_name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send_keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Unary&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send_keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;unary&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send_keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;yusuf@qawba.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;password1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send_keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;123456&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;password2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send_keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;123456&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="c"&gt;#submitting the form&lt;/span&gt;
+        &lt;span class="n"&gt;submit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;send_keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Keys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RETURN&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="c"&gt;#check the returned result&lt;/span&gt;
+        &lt;span class="k"&gt;assert&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Check your email&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;page_source&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As we see, the code is so simple and all that&amp;#8217;s is running our&amp;nbsp;test.&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VMoS1BXWvF4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;h3&gt;Links&lt;/h3&gt;
+&lt;p&gt;https://docs.djangoproject.com/en/1.4/topics/testing/#live-test-server
+https://code.google.com/p/chromedriver/downloads/list&amp;nbsp;https://selenium-python.readthedocs.org/&lt;/p&gt;</summary><category term="django"></category><category term="selenium"></category><category term="python"></category></entry></feed>

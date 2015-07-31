@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yusuf.im</title><link href="http://www.yusuf.im/" rel="alternate"></link><link href="http://www.yusuf.im/feeds/misc.atom.xml" rel="self"></link><id>http://www.yusuf.im/</id><updated>2015-05-30T02:21:00+01:00</updated><entry><title>Wagtail cms</title><link href="http://www.yusuf.im/posts/2015/May/30/wagtail-cms/" rel="alternate"></link><updated>2015-05-30T02:21:00+01:00</updated><author><name>Yusuf</name></author><id>tag:www.yusuf.im,2015-05-30:posts/2015/May/30/wagtail-cms/</id><summary type="html">&lt;p&gt;&lt;img alt="wagtail" src="http://www.yusuf.im/images/wagtail.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;intro&lt;/h2&gt;
+&lt;p&gt;Wagtail, a new Django based &lt;span class="caps"&gt;CMS&lt;/span&gt; built by &lt;a href="http://torchbox.com/"&gt;Torchbox&lt;/a&gt;, has been getting lot of attention recently. Originally it was a private project for the &lt;a href="http://www.rca.ac.uk/"&gt;Royal college of art&lt;/a&gt; and open sourced later as Tom Dyson the co-founder of Torchbox mentioned &lt;a href="https://news.ycombinator.com/item?id=7231504"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are many Django based content management systems like Django cms, Mezzanine, FeinCMS and so on. So why a new Django&amp;nbsp;cms?&lt;/p&gt;
+&lt;p&gt;Wagtail comes with lot of features and functionalities that makes it so flexible and easy to extend and customize. It&amp;#8217;s shipped with many options which offering the flexibility for developers and an elegant and ergonomic user interface for content&amp;nbsp;authors/editors.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="wagail admin" src="http://www.yusuf.im/images/wagtail-admin.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I can mention some highlighted features&amp;nbsp;like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pretty interface and&amp;nbsp;user-friendly&lt;/li&gt;
+&lt;li&gt;Good user&amp;nbsp;experience&lt;/li&gt;
+&lt;li&gt;flexibility&lt;/li&gt;
+&lt;li&gt;Easy to find and edit specific&amp;nbsp;content&lt;/li&gt;
+&lt;li&gt;ElasticSearch for&amp;nbsp;searching&lt;/li&gt;
+&lt;li&gt;Good document&amp;nbsp;management&lt;/li&gt;
+&lt;li&gt;Save drafts and submit for&amp;nbsp;moderation&lt;/li&gt;
+&lt;li&gt;Easy to use and to set&amp;nbsp;up&lt;/li&gt;
+&lt;li&gt;Comes with a demo App including good&amp;nbsp;examples&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And many more, just to let you the pleasure of discovering them by&amp;nbsp;yourself.&lt;/p&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Wagtail can work on most Django supported database management systems, but PostgreSQL is the most recommended for&amp;nbsp;production.&lt;/p&gt;
+&lt;p&gt;Wagtail has strong support for Elasticsearch, both in the admin interface and for users of the website, and is faster and more powerful than the Django &lt;span class="caps"&gt;ORM&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;There are many ways to setup Wagtail and our development environment to start using it, we are going to mention three of&amp;nbsp;them.&lt;/p&gt;
+&lt;h3&gt;Wagtail and&amp;nbsp;Vagrant&lt;/h3&gt;
+&lt;p&gt;Wagtail offers a Vagrant box that includes all the dependencies for a fully-fledged Wagtail environment and includes a set of standard templates and page types as a demo of a Wagtial based&amp;nbsp;website.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="caps"&gt;PS&lt;/span&gt;: Im using Vagrant version&amp;nbsp;1.7.2&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git clone https://github.com/torchbox/wagtaildemo.git
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;wagtaildemo
+&lt;span class="nv"&gt;$ &lt;/span&gt;vagrant -v
+Vagrant 1.7.2
+&lt;span class="nv"&gt;$ &lt;/span&gt;vagrant up
+&lt;span class="nv"&gt;$ &lt;/span&gt;vagrant ssh
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="c"&gt;#Create a new super user to access wagtail admin&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py createsuperuser
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="c"&gt;#To update Elasticsearch&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py update_index
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="c"&gt;#Let&amp;#39;s run wagtail demo now&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py runserver 0.0.0.0:8000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will make the app accessible on the host machine as &lt;a href="http://127.0.0.1:8000"&gt;http://127.0.0.1:8000&lt;/a&gt; - you can access the Wagtail admin interface at &lt;a href="http://127.0.0.1:8000/admin/"&gt;http://127.0.0.1:8000/admin/&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Wagtail, Yoman and&amp;nbsp;Vagrant&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://yeoman.io/"&gt;Yeoman&lt;/a&gt; offers &lt;a href="https://www.npmjs.com/package/generator-wagtail"&gt;generate-wagtail&lt;/a&gt; a tool for a quick start wagtail projects, the generator makes it so easy to get you up and running with a fresh copy of&amp;nbsp;Wagtail.&lt;/p&gt;
+&lt;p&gt;By running a simple command line you can get a new wagtail project shipped with a vagrantfile to run their official box with all dependencies installed and ready to&amp;nbsp;work.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;yo wagtail
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It will ask you to name your project, so name it whatever you like and press enter. You just created a new clean wagtail project. Now, you need to follow the same steps as we mentioned on the above with vagrant to provision your local vagrant box. For this time to access the wagtail project you must use &lt;a href="http://127.0.0.1:8111"&gt;http://127.0.0.1:8111&lt;/a&gt; or just open the vagrantfile and change the port 8111 to whatever you&amp;nbsp;like.&lt;/p&gt;
+&lt;h3&gt;Wagtail, pip and&amp;nbsp;Virtualenv&lt;/h3&gt;
+&lt;p&gt;We are going to create a python virtual environment and then install wagtail using&amp;nbsp;pip.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkvirtualenv blogenv
+&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install wagtail
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By installing wagtail a new command line will be available for use to create new wagtail&amp;nbsp;projects.&lt;/p&gt;
+&lt;p&gt;To create a new wagtail project all we need is to type the following&amp;nbsp;command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;wagtail start blog
+&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py migrate
+&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py createsuperuser
+&lt;span class="o"&gt;(&lt;/span&gt;blogenv&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;./manage.py runserver
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Congratulation, you have prepared your development environment and wagtail. All you need now it to give it a try and start discovering wagtail options and&amp;nbsp;features.&lt;/p&gt;
+&lt;p&gt;I didn&amp;#8217;t mention how to setup it using Docker. So, you can check out &lt;a href="https://registry.hub.docker.com/search?q=wagtail"&gt;https://registry.hub.docker.com/search?q=wagtail&lt;/a&gt; and give it a try&amp;nbsp;yourself.&lt;/p&gt;
+&lt;p&gt;We come to the end of this story and we are going to create a blog using wagtail in the next&amp;nbsp;story.&lt;/p&gt;</summary><category term="wagtail"></category><category term="django"></category><category term="cms"></category></entry></feed>
