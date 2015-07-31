@@ -268,5 +268,8 @@ Vagrant 1.7.2
 &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VMoS1BXWvF4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 
 &lt;h3&gt;Links&lt;/h3&gt;
-&lt;p&gt;https://docs.djangoproject.com/en/1.4/topics/testing/#live-test-server
-https://code.google.com/p/chromedriver/downloads/list&amp;nbsp;https://selenium-python.readthedocs.org/&lt;/p&gt;</summary><category term="django"></category><category term="selenium"></category><category term="python"></category></entry></feed>
+&lt;ul&gt;
+&lt;li&gt;https://docs.djangoproject.com/en/1.4/topics/testing/#live-test-server&lt;/li&gt;
+&lt;li&gt;https://code.google.com/p/chromedriver/downloads/list&lt;/li&gt;
+&lt;li&gt;https://selenium-python.readthedocs.org/&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="django"></category><category term="selenium"></category><category term="python"></category></entry></feed>
