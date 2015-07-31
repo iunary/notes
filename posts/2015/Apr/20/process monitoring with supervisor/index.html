@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Process monitoring with supervisor</title>
+
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">Yusuf.im</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+            <li><a href="/pages/about/" class="button secondary small">About</a></li>
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="/posts/2015/Apr/20/process monitoring with supervisor/" rel="bookmark"
+        title="Permalink to Process monitoring with supervisor">Process monitoring with&nbsp;supervisor</a></h3>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="iunary">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </header>
+
+<h6 class="subheader" title="2015-04-20T01:43:00+01:00">Mon 20 April 2015
+</h6>
+
+
+    <p>For some reasons you will find yourself writing some magical lines of code or having a small/large application that needs to run all the time and shouldn&#8217;t&nbsp;fail.</p>
+<p>To accomplish this, we need something to keep an eye on that magic or application and ensure to keep it up and running all the time, here comes the usefulness of&nbsp;supervisor.</p>
+<p>This story assumes that you are familiar with the command line and Sysadmin&nbsp;basics.</p>
+<h2>Intro</h2>
+<p><strong>Supervisor</strong> is a simple and popular python application for process controlling and monitoring. on the other hand it&#8217;s a program that runs and watch other programs to ensure they are executed all the&nbsp;time.</p>
+<p>On the next lines, we are going to demonstrate how to use it effectively to maintain your applications for a better&nbsp;deployments.</p>
+<h2>Installation and&nbsp;configuration</h2>
+<h3>Installation</h3>
+<p>To install Supervisor on Ubuntu or Debian, we can simply run the following as a super&nbsp;user:</p>
+<div class="highlight"><pre>apt-get install supervisor -y
+</pre></div>
+
+
+<p>Once it has completed, the supervisor daemon should be already running. To make sure it is, run the following&nbsp;command.</p>
+<div class="highlight"><pre>service supervisor status
+</pre></div>
+
+
+<p>The command will return &#8216;is running&#8217;, in case it&#8217;s not. You can start it by&nbsp;running.</p>
+<div class="highlight"><pre>service supervisor start
+</pre></div>
+
+
+<p>Now we have done with the installation of the supervisor and ensured of supervisord running. We can write our first configuration file for our&nbsp;application.</p>
+<h3>Configuration</h3>
+<p>I chose celery for this demonstration. Supervisor is a configuration file driven. We are going to write a configuration file for celery to be monitored and controlled by supervisor. Before that we are going to configure our supervisord web&nbsp;interface.</p>
+<p>Configuration files for supervisor are located in /etc/supervisor folder, by adding the following lines to the supervisor configuration file supervisord.conf we are going to be able to access it through our&nbsp;browser.</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">inet_http_server</span><span class="p">]</span>
+<span class="n">port</span><span class="o">=*</span><span class="p">:</span><span class="mi">9001</span>
+</pre></div>
+
+
+<p>By checking the the url http://127.0.0.1:9001 we can access the web interface of our supervisor doemon and it&#8217;s empty&nbsp;now.</p>
+<p><img alt="supervisor web ui" src="/images/supervisor_web_ui.png" /></p>
+<p>Supervisor comes also with supervisorctl, a client command line that allow us to control the processes. It provides a shell like interface to the features provided by supervisord. From supervisorctl, we can connect to different supervisord processes, get status on the subprocesses controlled by, stop and start subprocesses of, and get lists of running processes of a&nbsp;supervisord.</p>
+<p>As we see on the previous screenshot we don&#8217;t have any monitored process yet, so let&#8217;s create a configuration file for celery&nbsp;application.</p>
+<p>We need to create a new configuration file at /etc/supervisor/conf.d/ folder and we are going to call it celery.conf, the extension .conf is so important as we see on the supervisor configuration file, it includes any file with .conf&nbsp;extension.</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">include</span><span class="p">]</span>
+<span class="n">files</span> <span class="o">=</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">supervisor</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span><span class="o">/*.</span><span class="n">conf</span>
+</pre></div>
+
+
+<p>Now we need to tell Supervisord how to run and monitor celery. We are going to put the following lines in our&nbsp;celery.conf</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">program</span><span class="p">:</span><span class="n">celeryd</span><span class="p">]</span>
+<span class="n">command</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">celery</span> <span class="n">worker</span> <span class="o">-</span><span class="n">B</span> <span class="o">--</span><span class="n">loglevel</span><span class="o">=</span><span class="n">INFO</span>
+<span class="n">user</span><span class="o">=</span><span class="n">yusuf</span>
+<span class="n">numprocs</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">stdout_logfile</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">celery</span><span class="o">/</span><span class="n">worker</span><span class="o">.</span><span class="n">log</span>
+<span class="n">stderr_logfile</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">celery</span><span class="o">/</span><span class="n">worker</span><span class="o">.</span><span class="n">err</span>
+<span class="n">autostart</span><span class="o">=</span><span class="n">true</span>
+<span class="n">autorestart</span><span class="o">=</span><span class="n">true</span>
+<span class="n">startsecs</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">stopwaitsecs</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">killasgroup</span><span class="o">=</span><span class="n">true</span>
+<span class="n">priority</span><span class="o">=</span><span class="mi">998</span>
+</pre></div>
+
+
+<p>Now let&#8217;s check the web interface again, we see that our monitored application appeared on the&nbsp;list.</p>
+<p><img alt="supervisor running celery" src="supervisor_celeryd.png" /></p>
+<p>We can use the client command line by&nbsp;running</p>
+<div class="highlight"><pre> supervisorctrl status
+</pre></div>
+
+
+<p>In case there are no errors on our config file it will return something like that, telling us that our application is running and monitored by&nbsp;supervisor.</p>
+<p><code>bash
+ celeryd                          RUNNING    pid 27, uptime 0:05:07</code></p>
+<p>##Supervisor and&nbsp;Virtualenv</p>
+<p>On the previous celery configuration, we installed celery globally on our system. For many reasons python developers prefer to use virtualenv for both development and production mode, so we are going to modify our previous configuration, in case celery is installed on a python virtual&nbsp;environment.  </p>
+<p>Our celery.conf will looks like&nbsp;that.</p>
+<p><span class="dquo">&#8220;</span>`python
+[program:celeryd]
+environment=<span class="caps">PYTHONPATH</span>=&#8217;/path/to/your/env&#8217;
+command=/path/to/your/env/bin/celery worker &#8212;loglevel=<span class="caps">INFO</span>
+command=/usr/bin/celery worker -B &#8212;loglevel=<span class="caps">INFO</span>
+user=yusuf
+numprocs=1
+stdout_logfile=/var/log/celery/worker.log
+stderr_logfile=/var/log/celery/worker.err
+autostart=true
+autorestart=true
+startsecs=10
+stopwaitsecs = 600
+killasgroup=true&nbsp;priority=998</p>
+<div class="highlight"><pre>The PYTHONPATH section is setting up the python path to the virtualenv. So when supervisor goes to execute the command it will be executing it within the virtualenv.
+
+
+##Supervisor and Superlance
+
+Superlance is a python package of plugin utilities for monitoring and controlling processes that run under supervisor by listening to supervisord events.
+
+###Installation
+
+It can be installed easily by typing the following command:
+
+```bash
+$ pip install superlance
+</pre></div>
+
+
+<p>Superlance comes with five even&nbsp;listeners:</p>
+<ul>
+<li>httpok
+    &gt; This plugin is meant to be used as a supervisor event listener, subscribed to TICK_* events. It tests that a given child process which must in the <span class="caps">RUNNING</span> state, is viable via an <span class="caps">HTTP</span> <span class="caps">GET</span> request to a configured <span class="caps">URL</span>. If the request fails or times out, httpok will restart the “hung” child&nbsp;process.</li>
+<li>crashmail
+    &gt; This plugin is meant to be used as a supervisor event listener, subscribed to PROCESS_STATE_EXITED events. It email a user when a process enters the <span class="caps">EXITED</span> state&nbsp;unexpectedly.</li>
+<li>memmon
+    &gt; This plugin is meant to be used as a supervisor event listener, subscribed to TICK_* events. It monitors memory usage for configured child processes, and restarts them when they exceed a configured maximum&nbsp;size.</li>
+<li>crashmailbatch
+    &gt; Similar to crashmail, crashmailbatch sends email alerts when processes die unexpectedly. The difference is that all alerts generated within the configured time interval are batched together to avoid sending too many&nbsp;emails.</li>
+<li>fatalmailbatch
+    &gt; This plugin sends email alerts when processes fail to start too many times such that supervisord gives up retrying. All of the fatal start events generated within the configured time interval are batched together to avoid sending too many&nbsp;emails.</li>
+<li>crashsms
+    &gt; Similar to crashmailbatch except it sends <span class="caps">SMS</span> alerts through an email gateway. Messages are formatted to fit in <span class="caps">SMS</span>.</li>
+</ul>
+<p>In this story we are going to talk only about crashmail and configure it for our&nbsp;needs.</p>
+<p>We are going to edit supervisord.conf file by adding the following lines to the configuration&nbsp;file:</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">eventlistener</span><span class="p">:</span><span class="n">crashmail</span><span class="p">]</span>
+<span class="n">command</span><span class="o">=</span><span class="n">crashmail</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">m</span> <span class="n">dev</span><span class="nd">@example.com</span>
+<span class="n">events</span><span class="o">=</span><span class="n">PROCESS_STATE_EXITED</span>
+</pre></div>
+
+
+<p>If you want to get notified only for a specific application, for example celeryd in our&nbsp;case:</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">eventlistener</span><span class="p">:</span><span class="n">crashmail</span><span class="p">]</span>
+<span class="n">command</span><span class="o">=</span><span class="n">crashmail</span> <span class="o">-</span><span class="n">p</span> <span class="n">celeryd</span> <span class="o">-</span><span class="n">m</span> <span class="n">dev</span><span class="nd">@example.com</span>
+<span class="n">events</span><span class="o">=</span><span class="n">PROCESS_STATE_EXITED</span>
+</pre></div>
+
+
+<p>For more information about superlancer i recommend you to check their documentation at&nbsp;http://superlance.readthedocs.org/en/latest/</p>
+<p class="subheader">Category: <a href="/category/devops.html">devops</a>
+
+    Tagged: 
+    <a href="/tag/supervisor.html">supervisor </a>
+    <a href="/tag/superlance.html">superlance </a>
+    <a href="/tag/celery.html">celery </a>
+    <a href="/tag/virtualenv.html">virtualenv </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/coding.html">coding</a></li>
+            <li><a href="/category/devops.html">devops</a></li>
+            <li><a href="/category/misc.html">misc</a></li>
+   
+        </ul>
+
+		
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Yusuf.im by Yusuf</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
