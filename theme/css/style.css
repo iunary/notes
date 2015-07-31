@@ -1,5 +1,5 @@
 /* Misc */
-body { word-wrap:break-word; }
+body { word-wrap:break-word; font-family: 'Droid Sans', sans-serif;}
 
 ol li ul, ol li ol { 
 margin-bottom: 1.25em;
@@ -11,7 +11,7 @@ article { padding-left:1em; }
 /* Base.html - top navigation */
 .top-bar {
 /* 2BA6E3 #2B0034 */
-background: #2B0034; /* Header color */
+background: #2F2121; /* Header color */
 height: 100%; 
 margin-bottom: 1em; 
 }
@@ -67,10 +67,18 @@ hr.gradient {
 	margin-top: 1em;
 	margin-bottom: 1em;
 	border: 1px solid #ccc;
-	background: #e0e0e0;
+	background: #2F2121;
 	padding: 1em;
 	overflow: auto;
 	font-weight:normal;
 }
 
 body { background-color: #fffff9; }
+
+.newsletter{
+	background: #2F2121;
+	padding:15px;	
+	border-radius: 3px;
+	color:#fff;
+}
+.newsletter .title{ color:#DDD; font-weight: bold}
